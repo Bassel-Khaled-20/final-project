@@ -1,9 +1,12 @@
-import React, { createContext } from 'react'
+import React, { createContext, useContext } from 'react'
 import style from './WishlistContext.module.css'
 import axios from 'axios'
+import { UserContext } from '../UserContext/UserContext'
 export let WishlistContext =createContext()
 export default function WishlistContextProvider(props) {
-  let headers ={token:localStorage.getItem("token")}
+  let {UserToken}=useContext(UserContext)
+  let headers ={token:UserToken}
+
 
     function 
     AddProductWishlist(id){

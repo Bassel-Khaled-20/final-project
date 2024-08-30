@@ -49,7 +49,7 @@ function App() {
     {path:"resetcode",element:<ResetCode/>},
     {path:"checkout",element:<ProtectedRoute><Checkout/></ProtectedRoute>},
     {path:"resetpassword",element:<ProtectedRouteResetPassword><ResetPassword/></ProtectedRouteResetPassword>},
-    // {path:"checkout/allorders",element:<ProtectedRoute><Allorders/></ProtectedRoute>},
+
     {path:"*",element:<ProtectedRoute><Notfound/></ProtectedRoute>},
   ]}
 ])

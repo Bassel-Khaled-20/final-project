@@ -1,15 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useNavigate, Link, useParams, useLocation } from 'react-router-dom';
 import * as Yup from 'yup';
 import { UserContext } from '../UserContext/UserContext';
 
 
 
 export default function Login() {
-localStorage.removeItem("token")
-  
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().matches(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/, 'Password must contain at least one letter and one number')

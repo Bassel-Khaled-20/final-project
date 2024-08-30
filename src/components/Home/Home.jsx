@@ -14,7 +14,7 @@ import MainSlider from './../MainSlider/MainSlider';
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState(''); 
-  const [wishlist, setWishlist] = useState([]);
+  const [wishlist, setWishlist] = useState(null);
   const { AddToCart,setCartLength,CartLength } = useContext(CartContext);
   const { AddProductWishlist, GetLoggedUserwishlist } = useContext(WishlistContext);
   const { data, isError, isLoading, error } = useProducts();
@@ -23,7 +23,8 @@ export default function Home() {
   useEffect(() => {
     async function fetchWishlist() {
       let res = await GetLoggedUserwishlist();
-      setWishlist(res.data.data);
+      setWishlist(res?.data?.data);
+      
     }
 
     fetchWishlist();

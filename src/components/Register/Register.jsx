@@ -16,7 +16,6 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Register() {
-  localStorage.removeItem("token")
   let {setUserToken,UserToken}= useContext(UserContext)
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false)
@@ -180,7 +179,7 @@ export default function Register() {
                 borderColor: '#3FA43F',
               }}
             >
-             {isLoading ? <i class="fa-solid fa-spinner fa-spin"></i>: "Register Now"} 
+             {isLoading ? <i className="fa-solid fa-spinner fa-spin"></i>: "Register Now"} 
             </button>
             
           )}

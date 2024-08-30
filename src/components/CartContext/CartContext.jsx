@@ -1,11 +1,13 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import style from './CartContext.module.css'
 import axios from 'axios'
+import { UserContext } from '../UserContext/UserContext'
 export let CartContext =createContext()
 export default function CartContextProvider(props) {
+  let {UserToken}=useContext(UserContext)
   const [CartID, setCartID] = useState(null)
   const [CartLength, setCartLength] = useState(0)
-  let headers ={token:localStorage.getItem("token")}
+  let headers ={token:UserToken}
 
   function AddToCart(id){
  return  axios.post(`https://ecommerce.routemisr.com/api/v1/cart` ,   {
@@ -31,7 +33,7 @@ export default function CartContextProvider(props) {
  
 
   .then((res)=>{
-    console.log(res);
+  
    setCartLength(res.data.numOfCartItems)
  setCartID(res.data.data._id)
   return res})
