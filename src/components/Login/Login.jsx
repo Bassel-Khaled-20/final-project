@@ -8,6 +8,11 @@ import { UserContext } from '../UserContext/UserContext';
 
 
 export default function Login() {
+let {pathname}=useLocation()
+
+
+
+  
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().matches(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/, 'Password must contain at least one letter and one number')
@@ -15,6 +20,10 @@ const validationSchema = Yup.object().shape({
 
 });
   let {setUserToken,UserToken}= useContext(UserContext)
+  if(pathname=='/login'&& localStorage.getItem("token")){
+    localStorage.removeItem("token")
+    setUserToken(null)
+  }
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false)
   const [LoginError, setLoginError] = useState(null)

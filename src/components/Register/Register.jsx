@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { UserContext } from '../UserContext/UserContext';
 
@@ -16,10 +16,16 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Register() {
+  let {pathname}=useLocation()
+
   let {setUserToken,UserToken}= useContext(UserContext)
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false)
   const [reisterError, setreisterError] = useState(null)
+  if(pathname=='/register'&& localStorage.getItem("token")){
+    localStorage.removeItem("token")
+    setUserToken(null)
+  }
   async function handleRegister(values) {
 
     console.log(values);
