@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import style from './ProtectedRouteResetPassword.module.css'
-import { Navigate, useParams } from 'react-router-dom'
-
+import { Navigate } from 'react-router-dom'
 
 export default function ProtectedRouteResetPassword(props) {
-
-  useEffect(()=>console.log(x),[])
-  if(localStorage.getItem("token")){
+  if(localStorage.getItem("Success")){
     return props.children}
     else {
-    return <Navigate to={"/login"}/>}
+    return <Navigate to={"/login"}/>}}
 
-    }
